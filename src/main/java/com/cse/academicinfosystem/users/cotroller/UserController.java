@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") UserLoginDto user) {
+    public String login(@ModelAttribute("user") @Validated UserLoginDto user) {
         log.info("POST /login");
         log.info("user = {}", user);
         return "loginForm";
@@ -47,7 +48,7 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") UserAddDto userAddDto, BindingResult bindingResult) {
+    public String registerUser(@ModelAttribute("user") @Validated UserAddDto userAddDto, BindingResult bindingResult) {
 
         log.info("POST /register");
         log.info("userAddDto = {}", userAddDto);

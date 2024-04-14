@@ -20,14 +20,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "/login", "/register", "/logout").permitAll()
+                        .requestMatchers("/", "/login", "/register", "/logout").permitAll() // permitAll() : 모든 사용자에게 허용
                         .anyRequest().authenticated()
                 )
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/", true)
-                        .failureForwardUrl("/login?error=true")
+                        .failureUrl("/login?error=true")
                 );
 
         return http.build();

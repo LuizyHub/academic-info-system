@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>학년별 이수 학점 조회</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">학사 정보 시스템</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Courses</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>년도</th>
+            <th>학기</th>
+            <th>취득 학점</th>
+            <th>Professor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${courses}">
+            <td th:text="${course.year}">년도</td>
+            <td th:text="${course.semester}">학기</td>
+            <td th:text="${course.credits}">취득 학점</td>
+            <td>
+                <a th:href="@{/courses/{year}/{semester}(year=${course.year}, semester=${course.semester})}">
+                    View Details
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>총계</td>
+            <td></td>
+            <td th:text="${sum}">총계</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

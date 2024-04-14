@@ -5,18 +5,16 @@ import lombok.*;
 
 
 @Entity
-@Table(name = "users", indexes = {
-        @Index(name = "idx_username", columnList = "username", unique = true)
-})
+@Table(name = "users")
 @Data
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id = null;
 
-    @Column(unique = true)
+    @Id
     private String username;
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String email;
 }
